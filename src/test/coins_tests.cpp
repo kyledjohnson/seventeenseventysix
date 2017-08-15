@@ -17,7 +17,7 @@
 #include <map>
 
 #include <boost/test/unit_test.hpp>
-#include "seventeenseventysix/IncrementalMerkleTree.hpp"
+#include "zcash/IncrementalMerkleTree.hpp"
 
 namespace
 {
@@ -154,10 +154,10 @@ public:
 
 uint256 appendRandomCommitment(ZCIncrementalMerkleTree &tree)
 {
-    libseventeenseventysix::SpendingKey k = libseventeenseventysix::SpendingKey::random();
-    libseventeenseventysix::PaymentAddress addr = k.address();
+    libzcash::SpendingKey k = libzcash::SpendingKey::random();
+    libzcash::PaymentAddress addr = k.address();
 
-    libseventeenseventysix::Note note(addr.a_pk, 0, uint256(), uint256());
+    libzcash::Note note(addr.a_pk, 0, uint256(), uint256());
 
     auto cm = note.cm();
     tree.append(cm);

@@ -1,4 +1,4 @@
-SeventeenSeventySix Contributors
+Zcash Contributors
 ==================
 
 Jack Grigg (443)

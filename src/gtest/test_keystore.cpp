@@ -5,17 +5,17 @@
 #ifdef ENABLE_WALLET
 #include "wallet/crypter.h"
 #endif
-#include "seventeenseventysix/Address.hpp"
+#include "zcash/Address.hpp"
 
 TEST(keystore_tests, store_and_retrieve_spending_key) {
     CBasicKeyStore keyStore;
-    libseventeenseventysix::SpendingKey skOut;
+    libzcash::SpendingKey skOut;
 
-    std::set<libseventeenseventysix::PaymentAddress> addrs;
+    std::set<libzcash::PaymentAddress> addrs;
     keyStore.GetPaymentAddresses(addrs);
     EXPECT_EQ(0, addrs.size());
 
-    auto sk = libseventeenseventysix::SpendingKey::random();
+    auto sk = libzcash::SpendingKey::random();
     auto addr = sk.address();
 
     // Sanity-check: we can't get a key we haven't added
@@ -36,7 +36,7 @@ TEST(keystore_tests, store_and_retrieve_note_decryptor) {
     CBasicKeyStore keyStore;
     ZCNoteDecryption decOut;
 
-    auto sk = libseventeenseventysix::SpendingKey::random();
+    auto sk = libzcash::SpendingKey::random();
     auto addr = sk.address();
 
     EXPECT_FALSE(keyStore.GetNoteDecryptor(addr, decOut));
@@ -58,12 +58,12 @@ TEST(keystore_tests, store_and_retrieve_spending_key_in_encrypted_store) {
     TestCCryptoKeyStore keyStore;
     uint256 r {GetRandHash()};
     CKeyingMaterial vMasterKey (r.begin(), r.end());
-    libseventeenseventysix::SpendingKey keyOut;
+    libzcash::SpendingKey keyOut;
     ZCNoteDecryption decOut;
-    std::set<libseventeenseventysix::PaymentAddress> addrs;
+    std::set<libzcash::PaymentAddress> addrs;
 
     // 1) Test adding a key to an unencrypted key store, then encrypting it
-    auto sk = libseventeenseventysix::SpendingKey::random();
+    auto sk = libzcash::SpendingKey::random();
     auto addr = sk.address();
     EXPECT_FALSE(keyStore.GetNoteDecryptor(addr, decOut));
 
@@ -100,7 +100,7 @@ TEST(keystore_tests, store_and_retrieve_spending_key_in_encrypted_store) {
     ASSERT_EQ(1, addrs.count(addr));
 
     // 2) Test adding a spending key to an already-encrypted key store
-    auto sk2 = libseventeenseventysix::SpendingKey::random();
+    auto sk2 = libzcash::SpendingKey::random();
     auto addr2 = sk2.address();
     EXPECT_FALSE(keyStore.GetNoteDecryptor(addr2, decOut));
 

@@ -5,7 +5,7 @@
 #include "uint252.h"
 #include "serialize.h"
 
-namespace libseventeenseventysix {
+namespace libzcash {
 
 const size_t SerializedPaymentAddressSize = 64;
 const size_t SerializedSpendingKeySize = 32;

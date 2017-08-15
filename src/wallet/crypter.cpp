@@ -136,14 +136,14 @@ static bool DecryptKey(const CKeyingMaterial& vMasterKey, const std::vector<unsi
 
 static bool DecryptSpendingKey(const CKeyingMaterial& vMasterKey,
                                const std::vector<unsigned char>& vchCryptedSecret,
-                               const libseventeenseventysix::PaymentAddress& address,
-                               libseventeenseventysix::SpendingKey& sk)
+                               const libzcash::PaymentAddress& address,
+                               libzcash::SpendingKey& sk)
 {
     CKeyingMaterial vchSecret;
     if(!DecryptSecret(vMasterKey, vchCryptedSecret, address.GetHash(), vchSecret))
         return false;
 
-    if (vchSecret.size() != libseventeenseventysix::SerializedSpendingKeySize)
+    if (vchSecret.size() != libzcash::SerializedSpendingKeySize)
         return false;
 
     CSecureDataStream ss(vchSecret, SER_NETWORK, PROTOCOL_VERSION);
@@ -203,9 +203,9 @@ bool CCryptoKeyStore::Unlock(const CKeyingMaterial& vMasterKeyIn)
         CryptedSpendingKeyMap::const_iterator skmi = mapCryptedSpendingKeys.begin();
         for (; skmi != mapCryptedSpendingKeys.end(); ++skmi)
         {
-            const libseventeenseventysix::PaymentAddress &address = (*skmi).first;
+            const libzcash::PaymentAddress &address = (*skmi).first;
             const std::vector<unsigned char> &vchCryptedSecret = (*skmi).second;
-            libseventeenseventysix::SpendingKey sk;
+            libzcash::SpendingKey sk;
             if (!DecryptSpendingKey(vMasterKeyIn, vchCryptedSecret, address, sk))
             {
                 keyFail = true;
@@ -298,7 +298,7 @@ bool CCryptoKeyStore::GetPubKey(const CKeyID &address, CPubKey& vchPubKeyOut) co
     return false;
 }
 
-bool CCryptoKeyStore::AddSpendingKey(const libseventeenseventysix::SpendingKey &sk)
+bool CCryptoKeyStore::AddSpendingKey(const libzcash::SpendingKey &sk)
 {
     {
         LOCK(cs_SpendingKeyStore);
@@ -322,8 +322,8 @@ bool CCryptoKeyStore::AddSpendingKey(const libseventeenseventysix::SpendingKey &
     return true;
 }
 
-bool CCryptoKeyStore::AddCryptedSpendingKey(const libseventeenseventysix::PaymentAddress &address,
-                                            const libseventeenseventysix::ViewingKey &vk,
+bool CCryptoKeyStore::AddCryptedSpendingKey(const libzcash::PaymentAddress &address,
+                                            const libzcash::ViewingKey &vk,
                                             const std::vector<unsigned char> &vchCryptedSecret)
 {
     {
@@ -337,7 +337,7 @@ bool CCryptoKeyStore::AddCryptedSpendingKey(const libseventeenseventysix::Paymen
     return true;
 }
 
-bool CCryptoKeyStore::GetSpendingKey(const libseventeenseventysix::PaymentAddress &address, libseventeenseventysix::SpendingKey &skOut) const
+bool CCryptoKeyStore::GetSpendingKey(const libzcash::PaymentAddress &address, libzcash::SpendingKey &skOut) const
 {
     {
         LOCK(cs_SpendingKeyStore);
@@ -376,11 +376,11 @@ bool CCryptoKeyStore::EncryptKeys(CKeyingMaterial& vMasterKeyIn)
         mapKeys.clear();
         BOOST_FOREACH(SpendingKeyMap::value_type& mSpendingKey, mapSpendingKeys)
         {
-            const libseventeenseventysix::SpendingKey &sk = mSpendingKey.second;
+            const libzcash::SpendingKey &sk = mSpendingKey.second;
             CSecureDataStream ss(SER_NETWORK, PROTOCOL_VERSION);
             ss << sk;
             CKeyingMaterial vchSecret(ss.begin(), ss.end());
-            libseventeenseventysix::PaymentAddress address = sk.address();
+            libzcash::PaymentAddress address = sk.address();
             std::vector<unsigned char> vchCryptedSecret;
             if (!EncryptSecret(vMasterKeyIn, vchSecret, address.GetHash(), vchCryptedSecret))
                 return false;

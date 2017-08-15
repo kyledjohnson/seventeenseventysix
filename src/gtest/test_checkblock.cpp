@@ -3,7 +3,7 @@
 
 #include "consensus/validation.h"
 #include "main.h"
-#include "seventeenseventysix/Proof.hpp"
+#include "zcash/Proof.hpp"
 
 class MockCValidationState : public CValidationState {
 public:
@@ -23,7 +23,7 @@ public:
 };
 
 TEST(CheckBlock, VersionTooLow) {
-    auto verifier = libseventeenseventysix::ProofVerifier::Strict();
+    auto verifier = libzcash::ProofVerifier::Strict();
 
     CBlock block;
     block.nVersion = 1;

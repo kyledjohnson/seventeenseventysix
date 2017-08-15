@@ -1,5 +1,5 @@
 #!/bin/sh
-# postrm script for seventeenseventysix
+# postrm script for zcash
 #
 # see: dh_installdeb(1)
 

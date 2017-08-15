@@ -1,7 +1,7 @@
 #ifndef _ZCJOINSPLIT_H_
 #define _ZCJOINSPLIT_H_
 
-#include "SeventeenSeventySix.h"
+#include "Zcash.h"
 #include "Proof.hpp"
 #include "Address.hpp"
 #include "Note.hpp"
@@ -13,7 +13,7 @@
 
 #include <boost/array.hpp>
 
-namespace libseventeenseventysix {
+namespace libzcash {
 
 class JSInput {
 public:
@@ -100,7 +100,7 @@ protected:
 
 }
 
-typedef libseventeenseventysix::JoinSplit<ZC_NUM_JS_INPUTS,
+typedef libzcash::JoinSplit<ZC_NUM_JS_INPUTS,
                             ZC_NUM_JS_OUTPUTS> ZCJoinSplit;
 
 #endif // _ZCJOINSPLIT_H_

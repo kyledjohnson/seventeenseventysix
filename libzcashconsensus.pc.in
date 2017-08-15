@@ -3,9 +3,9 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
 
-Name: SeventeenSeventySix consensus library
-Description: Library for the SeventeenSeventySix consensus protocol.
+Name: Zcash consensus library
+Description: Library for the Zcash consensus protocol.
 Version: @PACKAGE_VERSION@
-Libs: -L${libdir} -lseventeenseventysixconsensus
+Libs: -L${libdir} -lzcashconsensus
 Cflags: -I${includedir}
 Requires.private: libcrypto

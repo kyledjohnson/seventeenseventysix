@@ -5,9 +5,9 @@
 #include "version.h"
 #include "streams.h"
 
-#include "seventeenseventysix/util.h"
+#include "zcash/util.h"
 
-namespace libseventeenseventysix {
+namespace libzcash {
 
 Note::Note() {
     a_pk = random_uint256();

@@ -20,7 +20,7 @@
 #include "script/script.h"
 #include "script/standard.h"
 #include "support/allocators/zeroafterfree.h"
-#include "seventeenseventysix/Address.hpp"
+#include "zcash/Address.hpp"
 
 #include <string>
 #include <vector>
@@ -98,24 +98,24 @@ public:
 
 class CZCPaymentAddress : public CBase58Data {
 public:
-    bool Set(const libseventeenseventysix::PaymentAddress& addr);
+    bool Set(const libzcash::PaymentAddress& addr);
     CZCPaymentAddress() {}
 
     CZCPaymentAddress(const std::string& strAddress) { SetString(strAddress.c_str(), 2); }
-    CZCPaymentAddress(const libseventeenseventysix::PaymentAddress& addr) { Set(addr); }
+    CZCPaymentAddress(const libzcash::PaymentAddress& addr) { Set(addr); }
 
-    libseventeenseventysix::PaymentAddress Get() const;
+    libzcash::PaymentAddress Get() const;
 };
 
 class CZCSpendingKey : public CBase58Data {
 public:
-    bool Set(const libseventeenseventysix::SpendingKey& addr);
+    bool Set(const libzcash::SpendingKey& addr);
     CZCSpendingKey() {}
 
     CZCSpendingKey(const std::string& strAddress) { SetString(strAddress.c_str(), 2); }
-    CZCSpendingKey(const libseventeenseventysix::SpendingKey& addr) { Set(addr); }
+    CZCSpendingKey(const libzcash::SpendingKey& addr) { Set(addr); }
 
-    libseventeenseventysix::SpendingKey Get() const;
+    libzcash::SpendingKey Get() const;
 };
 
 /** base58-encoded Bitcoin addresses.

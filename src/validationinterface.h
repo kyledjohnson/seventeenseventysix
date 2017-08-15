@@ -8,7 +8,7 @@
 
 #include <boost/signals2/signal.hpp>
 
-#include "seventeenseventysix/IncrementalMerkleTree.hpp"
+#include "zcash/IncrementalMerkleTree.hpp"
 
 class CBlock;
 class CBlockIndex;

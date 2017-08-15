@@ -1,9 +1,9 @@
-// Copyright (c) 2017 The SeventeenSeventySix developers
+// Copyright (c) 2017 The Zcash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef SEVENTEENSEVENTYSIX_AMQP_AMQPPUBLISHNOTIFIER_H
-#define SEVENTEENSEVENTYSIX_AMQP_AMQPPUBLISHNOTIFIER_H
+#ifndef ZCASH_AMQP_AMQPPUBLISHNOTIFIER_H
+#define ZCASH_AMQP_AMQPPUBLISHNOTIFIER_H
 
 #include "amqpabstractnotifier.h"
 #include "amqpconfig.h"
@@ -53,4 +53,4 @@ public:
     bool NotifyTransaction(const CTransaction &transaction);
 };
 
-#endif // SEVENTEENSEVENTYSIX_AMQP_AMQPPUBLISHNOTIFIER_H
+#endif // ZCASH_AMQP_AMQPPUBLISHNOTIFIER_H
